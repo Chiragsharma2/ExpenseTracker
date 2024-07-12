@@ -127,7 +127,7 @@ function ExpenseList() {
                   type="text"
                   placeholder='Search expenses...'
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  //onChange={(e) => setSearchTerm(e.target.value)}
                   className='p-2 border rounded'
                 />
               <div className="bg-white shadow overflow-hidden sm:rounded-lg">
