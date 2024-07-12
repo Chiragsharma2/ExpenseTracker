@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const api_url = process.env.API_URL;
+const api_url = import.meta.env.API_URL;
 
 const authHeader = () => {
   const token = localStorage.getItem('token');
