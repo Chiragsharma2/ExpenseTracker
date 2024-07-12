@@ -4,7 +4,8 @@ import { createExpense, updateExpense } from '../services/api';
 export default function ExpenseForm({ expenseToEdit, onExpenseAdded, onExpenseUpdated, onCancelEdit }) {
     const [expense, setExpense] = useState({
         description: '',
-        amount: ''
+        amount: '',
+        category:''
     });
 
     useEffect(() => {
@@ -55,6 +56,18 @@ export default function ExpenseForm({ expenseToEdit, onExpenseAdded, onExpenseUp
                         type='number'
                         name='amount'
                         value={expense.amount}
+                        onChange={handleChange}
+                        placeholder='amount'
+                        className='mt-1 p-1 block w-full rounded-md bg-gray-100 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor='category' className='block text-sm font-medium text-gray-700'>Category</label>
+                    <input 
+                        type='text'
+                        name='category'
+                        value={expense.category}
                         onChange={handleChange}
                         placeholder='amount'
                         className='mt-1 p-1 block w-full rounded-md bg-gray-100 border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'

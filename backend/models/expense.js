@@ -17,7 +17,8 @@ const ExpenseSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
-  }
+  },
+  category: { type: String, required: true }
 });
 
 const Expense = mongoose.model('Expense', ExpenseSchema);

@@ -3,11 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { getExpenses, deleteExpense } from '../services/api';
 import ExpenseItem from './ExpenseItem';
 import ExpenseForm from './ExpenseForm';
+import ExpenseVisualization from './ExpenseVisualization';
 
 
 function ExpenseList() {
-  const [expenses, setExpenses] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [expenses, setExpenses] = useState([]);         // for mapping expenses
+  const [isLoading, setIsLoading] = useState(true);     // for loading visibility
+
+  // const [searchTerm,setSearchTerm] = useState('');      // for filtering the searched item
+  // const [categoryFilter, setCategoryFilter] = useState('');
   const [error, setError] = useState(null);
   const [expenseToEdit, setExpenseToEdit] = useState(null);
 
@@ -65,6 +69,11 @@ function ExpenseList() {
     navigate('/');
   }
 
+  // const filteredExpenses = expenses.filter(expense => 
+  //   expense.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  //   expense.category.toLowerCase().includes(serchTerm.toLowerCase())
+  // )
+
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
@@ -113,6 +122,14 @@ function ExpenseList() {
             ) : error ? (
               <div className="text-red-500">{error}</div>
             ) : expenses && expenses.length > 0 ? (
+              <div>
+                <input 
+                  type="text"
+                  placeholder='Search expenses...'
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className='p-2 border rounded'
+                />
               <div className="bg-white shadow overflow-hidden sm:rounded-lg">
                 <ul className="divide-y divide-gray-200">
                   {expenses.map((expense) => (
@@ -125,12 +142,14 @@ function ExpenseList() {
                   ))}
                 </ul>
               </div>
+              </div>
             ) : (
               <p className="text-center text-gray-500">No expenses found.</p>
             )}
           </div>
         </div>
       </div>
+      <ExpenseVisualization expenses={expenses} />
     </div>
   );
 }
