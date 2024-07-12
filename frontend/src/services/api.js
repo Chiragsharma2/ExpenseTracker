@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:6767/api';
+const api_url = process.env.API_URL;
 
 const authHeader = () => {
   const token = localStorage.getItem('token');
@@ -10,7 +10,7 @@ const authHeader = () => {
 
 export const register = async (userData) => {
   try {
-    const response = await axios.post(`${API_URL}/auth/register`, userData );
+    const response = await axios.post(`${api_url}/auth/register`, userData );
     console.log('Register Response:', response.data);
     return response.data;
   } catch (error) {
@@ -21,7 +21,7 @@ export const register = async (userData) => {
 
 export const login = async (credentials) => {
   try {
-    const response = await axios.post(`${API_URL}/auth/login`, credentials);
+    const response = await axios.post(`${api_url}/auth/login`, credentials);
     console.log('Login Response:', response.data);
     return response.data;
   } catch (error) {
@@ -33,7 +33,7 @@ export const login = async (credentials) => {
 
 export const getExpenses = async () => {
     try {
-      const response = await axios.get(`${API_URL}/expenses`, { headers: authHeader() });
+      const response = await axios.get(`${api_url}/expenses`, { headers: authHeader() });
       console.log('API Response:', response.data);
       return response.data;
     } catch (error) {
@@ -44,7 +44,7 @@ export const getExpenses = async () => {
 
 export const createExpense = async (expenseData) => {
     try {
-      const response = await axios.post(`${API_URL}/expenses`, expenseData,  { headers: authHeader() });
+      const response = await axios.post(`${api_url}/expenses`, expenseData,  { headers: authHeader() });
       return response.data;
     } catch (error) {
       console.error('Error creating expense:', error);
@@ -55,7 +55,7 @@ export const createExpense = async (expenseData) => {
 export const deleteExpense = async (id) => {
   console.log('Sending DELETE request for id:', id);
   try {
-    const response = await axios.delete(`${API_URL}/expenses/${id}`, { headers: authHeader() });
+    const response = await axios.delete(`${api_url}/expenses/${id}`, { headers: authHeader() });
     console.log('Delete response:', response);
     return response.data;
   } catch (error) {
@@ -67,7 +67,7 @@ export const deleteExpense = async (id) => {
 export const updateExpense = async (id, updatedexpense) => {
   console.log('Sending PUT request for id:', id);
   try {
-    const response = await axios.patch(`${API_URL}/expenses/${id}`, updatedexpense, { headers: authHeader() });
+    const response = await axios.patch(`${api_url}/expenses/${id}`, updatedexpense, { headers: authHeader() });
     console.log('Update response:', response);
     return response;
   } catch (error) {
