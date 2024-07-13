@@ -2,8 +2,9 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from './components/Home';
 import AuthLayout from './components/AuthLayout';
-import Register from './components/Register';
-import ExpenseList from "./components/ExpenseList";
+import Dashboard from "./components/Dashboard";
+import AboutUs from "./components/AboutUs";
+import TermsAndConditions from "./components/TermsAndConditions";
 
 function ProtectedRoute({ children }){
   const token = localStorage.getItem('token');
@@ -21,12 +22,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<AuthLayout />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/about" element={< AboutUs/>} />
+          <Route path="/terms" element={< TermsAndConditions/>} />
           <Route 
             path="/dashboard"
             element={
               <ProtectedRoute>
-                <ExpenseList />
+                <Dashboard />
               </ProtectedRoute>
             }
           />

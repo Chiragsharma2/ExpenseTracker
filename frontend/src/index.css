@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes highlight {
+    0% { background-color: #ffffff; }
+    50% { background-color: #e0f2fe; }
+    100% { background-color: #ffffff; }
+}
+
+.highlight-form {
+    animation: highlight 1s ease-in-out;
+}

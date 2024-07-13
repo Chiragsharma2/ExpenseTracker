@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Login from './Login';
 import Register from './Register';
+import Header from "./Header";
+import Footer from "./Footer";
 
 
 
@@ -30,21 +32,25 @@ const AuthLayout = () => {
 
 
     return (
-        <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-            <div className="relative w-full max-w-3xl" style={{ height: `${containerHeight}px` }}>
-                <div className="flex absolute inset-0">
-                    <div className={`w-1/2 bg-white rounded-l-lg shadow-md overflow-hidden transition-transform duration-1000 ease-in-out ${isLoginView ? '' : 'transform translate-x-full'}`}>
-                        <div ref={loginRef} className={` h-full `}>
-                            {isLoginView ? <LoginForm /> : <RegisterForm /> }
+        <div>
+            <Header />
+            <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+                <div className="relative w-full max-w-3xl" style={{ height: `${containerHeight}px` }}>
+                    <div className="flex absolute inset-0">
+                        <div className={`w-1/2 bg-white rounded-l-lg shadow-md overflow-hidden transition-transform duration-1000 ease-in-out ${isLoginView ? '' : 'transform translate-x-full'}`}>
+                            <div ref={loginRef} className={` h-full `}>
+                                {isLoginView ? <LoginForm /> : <RegisterForm /> }
+                            </div>
                         </div>
-                    </div>
-                    <div className={`w-1/2 bg-blue-500 rounded-l-lg shadow-md overflow-hidden transition-transform duration-1000 ease-in-out ${isLoginView ? '' : 'transform -translate-x-full'}`}>
-                        <div ref={registerRef} className={`h-full `}>
-                            {isLoginView ? <RegisterPrompt toggleView={toggleView} /> : <LoginPrompt toggleView={toggleView} /> }
+                        <div className={`w-1/2 bg-blue-500 rounded-l-lg shadow-md overflow-hidden transition-transform duration-1000 ease-in-out ${isLoginView ? '' : 'transform -translate-x-full'}`}>
+                            <div ref={registerRef} className={`h-full `}>
+                                {isLoginView ? <RegisterPrompt toggleView={toggleView} /> : <LoginPrompt toggleView={toggleView} /> }
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };

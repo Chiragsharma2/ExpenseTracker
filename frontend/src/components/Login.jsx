@@ -21,9 +21,11 @@ export default function Login() {
             console.log('Login Response:', response);
             if (response.token) {
                 localStorage.setItem('token', response.token);
+                console.log('Token set in localStorage:', response.token);
                 navigate('/dashboard');
             } else {
                 setError('Login failed: No token received');
+                console.log('No token in resonse:', response);
             }
         } catch (error) {
             console.error('Login failed:', error.response ? error.response.data : error);

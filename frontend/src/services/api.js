@@ -4,6 +4,7 @@ const api_url = import.meta.env.VITE_API_URL;
 
 const authHeader = () => {
   const token = localStorage.getItem('token');
+  console.log('Current token:', token);   //debug: Log the current token
   return token ? { Authorization: `Bearer ${token}` } : {};
 };
 
@@ -26,6 +27,7 @@ export const login = async (credentials) => {
     const response = await axios.post(`${api_url}/auth/login`, credentials);
     console.log('Login Response:', response.data);
     return response.data;
+    
   } catch (error) {
     console.error('Error while logging in:', error.response ? error.response.data : error.message);
     throw error;
