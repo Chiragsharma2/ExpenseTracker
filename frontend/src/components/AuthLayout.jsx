@@ -64,7 +64,7 @@ const LoginForm = () => (
 
 const RegisterForm = () => (
     <div className="p-8 h-full flex flex-col md:justify-between sm:space-y-1">
-        <h2 className="text-2xl font-bold mb-4 text-center">Create Your Account</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center"><span>Create</span><span className="hidden md:inline">Your Account</span></h2>
         <Register />
     </div>
 );
